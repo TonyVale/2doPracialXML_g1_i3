@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 |   <xsd:element name="nascar_data" type="resultT"/>
+
 |   <xsd:complexType name="resultT">
 |       <xsd:choice>
 |           <xsd:sequence>
@@ -39,4 +40,5 @@
 |           <xsd:element name="laps_completed" type="xsd:string"/>
 |       </xsd:sequence>
 |   </xsd:complexType>
+
 </xsd:schema>
