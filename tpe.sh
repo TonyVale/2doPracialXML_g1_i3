@@ -39,11 +39,11 @@ es_parametro_valido() {
 if  es_numero_valido "$2" && es_parametro_valido "$1"; then
     if [ -d "./$1/$2" ]; then
         echo "Ruta de acceso ya creada."
+        java "net.sf.saxon.Query ./nascar_data.xq param1=A param2=B" -o:"nascar_data.xml"
     else
         mkdir -p "./$1/$2"
         curl "https://api.sportradar.com/nascar-ot3/$1/$2/drivers/list.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./$1/$2/driver_list.xml"
         curl "https://api.sportradar.com/nascar-ot3/$1/drivers/$2/drivers.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./$1/$2/driver_standings.xml"
-        
     fi
     
 else
