@@ -31,13 +31,13 @@ if (exists($doc1) and exists($doc2)) then
                 then <car>{data($doc1[@id = $driver/@id]/ns1:car[1]/ns1:manufacturer/@name)}</car>
                 else ()
                 }
-                <statics>
+                <statistics>
                     <season_points>{data($driver/@points)}</season_points>
                     <wins>{data($driver/@wins)}</wins>
                     <poles>{data($driver/@poles)}</poles>
                     <races_not_finished>{data($driver/@dnf)}</races_not_finished>
                     <laps_completed>{data($driver/@laps_completed)}</laps_completed>
-                </statics>
+                </statistics>
             </driver>
         }
         </drivers>
