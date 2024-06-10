@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <?xml-stylesheet type="text/xsl" charset="UTF-8" href="/xslt/nascar/series-v2.0.xsl"?>
 <!-- Generation started @ 2018-04-25 17:58:05 +0000 -->
 <series xmlns="http://feed.elasticstats.com/schema/nascar/series-v2.0.xsd" id="3e32047e-4ff3-4e35-a607-1546a2c32214" alias="CUP" name="Monster Energy NASCAR Cup">
