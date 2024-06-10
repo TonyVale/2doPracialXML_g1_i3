@@ -107,12 +107,30 @@
         <fo:table-cell>
             <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./birth_place"/></fo:block>
         </fo:table-cell>
-        <fo:table-cell>
-            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./car"/></fo:block>
-        </fo:table-cell>
-        <fo:table-cell>
-            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./rank"/></fo:block>
-        </fo:table-cell>
+        <xsl:choose>
+            <xsl:when test="./car">
+                <fo:table-cell>
+                    <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./car"/></fo:block>
+                </fo:table-cell>
+            </xsl:when>
+            <xsl:otherwise>
+                <fo:table-cell>
+                    <fo:block font-size="8pt" text-align="center">-</fo:block>
+                </fo:table-cell>
+            </xsl:otherwise>
+        </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="./rank &lt; 4" >
+                <fo:table-cell>
+                    <fo:block font-size="8pt" color="green" text-align="center"><xsl:value-of select="./rank"/></fo:block>
+                </fo:table-cell>
+            </xsl:when>
+            <xsl:otherwise>
+                <fo:table-cell>
+                    <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./rank"/></fo:block>
+                </fo:table-cell>
+            </xsl:otherwise>
+        </xsl:choose>
         <fo:table-cell>
             <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./statistics/season_points"/></fo:block>
         </fo:table-cell>
