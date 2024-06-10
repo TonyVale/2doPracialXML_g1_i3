@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 <xsl:template match="error">
     <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
@@ -85,11 +85,50 @@
                                     <fo:block font-size="8pt" text-align="center">Completed laps</fo:block>
                                 </fo:table-cell>
                             </fo:table-row>
+                            <xsl:apply-templates/>
                         </fo:table-body>
                 </fo:table>
             </fo:flow>
         </fo:page-sequence>
     </fo:root>
+</xsl:template>
+
+<xsl:template match="driver">
+    <fo:table-row>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./full_name"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./country"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./birth_date"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./birth_place"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./car"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./rank"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./statistics/season_points"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./statistics/wins"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./statistics/poles"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./statistics/races_not_finished"/></fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <fo:block font-size="8pt" text-align="center"><xsl:value-of select="./statistics/laps_completed"/></fo:block>
+        </fo:table-cell>
+    </fo:table-row>
 </xsl:template>
 
 </xsl:stylesheet>
