@@ -23,7 +23,7 @@ if (exists($doc1) and exists($doc2)) then
             <driver>
                 <full_name>{data($driver/@full_name)}</full_name>
                 <country>{data($doc1[@id = $driver/@id]/@country)}</country>
-                <birth_date>{data($doc1[@id = $driver/@id]/@birth_date)}</birth_date>
+                <birth_date>{data($doc1[@id = $driver/@id]/@birthday)}</birth_date>
                 <birth_place>{data($doc1[@id = $driver/@id]/@birth_place)}</birth_place>
                 <rank>{data($driver/@rank)}</rank>
                 
