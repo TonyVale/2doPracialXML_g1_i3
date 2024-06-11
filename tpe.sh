@@ -36,16 +36,24 @@ sc|xf|cw|go|mc)
 }
 
 if  es_numero_valido "$2" && es_parametro_valido "$1"; then
-    if [ -d "./$1/$2" ]; then
-        echo "Ruta de acceso ya creada."
-        java net.sf.saxon.Query ./extract_nascar_data.xq param1="$1" param2="$2" > nascar_data.xml
-    else
-        mkdir -p "./$1/$2"
-        curl "https://api.sportradar.com/nascar-ot3/$1/$2/drivers/list.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./$1/$2/driver_list.xml"
+    if  [ ! -d "./data/$1/$2" ]; then
+        echo a
+        mkdir -p "./data/$1/$2"
+        curl "https://api.sportradar.com/nascar-ot3/$1/$2/drivers/list.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./data/$1/$2/driver_list.xml"
         sleep 2
-        curl "https://api.sportradar.com/nascar-ot3/$1/$2/standings/drivers.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./$1/$2/driver_standings.xml"
+        curl "https://api.sportradar.com/nascar-ot3/$1/$2/standings/drivers.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./data/$1/$2/driver_standings.xml"
+        sleep 2 
+
     fi
-    
+
 else
     echo "Parametros incorrectos"
 fi
+
+java net.sf.saxon.Query ./extract_nascar_data.xq param1="$1" param2="$2" > nascar_data.xml
+    
+if  [ -d "./data/$1/$2" ]; then
+    java net.sf.saxon.Transform -s:nascar_data.xml -xsl:generate_fo.xsl -o:nascar_page.fo
+    ./fop-2.9-bin/fop-2.9/fop/fop -fo nascar_page.fo -pdf nascar_report.pdf
+fi
+

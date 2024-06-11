@@ -6,16 +6,17 @@ declare variable $param2 as xs:string external;
 
 declare option saxon:output "indent=yes";
 
-let $doc1 := doc(concat($param1 , "/" , $param2 , "/driver_list.xml"))//ns1:driver
-let $doc2 := doc(concat($param1 , "/" , $param2 , "/driver_standings.xml"))//ns2:driver
-
-
+let $doc1-uri := concat("data/", $param1, "/", $param2, "/driver_list.xml")
+let $doc2-uri := concat("data/", $param1, "/", $param2, "/driver_standings.xml")
 
 return
-if (exists($doc1) and exists($doc2)) then
+if (doc-available($doc1-uri) and doc-available($doc2-uri)) then
+    let $doc1 := doc($doc1-uri)//ns1:driver
+    let $doc2 := doc($doc2-uri)//ns2:driver
+    return
     <nascar_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nascar_data.xsd">
         <year>{$param2}</year>
-        <serie_type>{data(doc(concat($param1 , "/" , $param2 , "/driver_standings.xml"))//ns2:series/@name)}</serie_type>
+        <serie_type>{data(doc(concat("data/" , $param1 , "/" , $param2 , "/driver_standings.xml"))//ns2:series/@name)}</serie_type>
         <drivers>{
             for $driver in ($doc2)
             order by xs:integer($driver/@rank)
@@ -42,5 +43,6 @@ if (exists($doc1) and exists($doc2)) then
         }
         </drivers>
     </nascar_data>
-else
-    <error>Error</error>
+    else
+    <nascar_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nascar_data.xsd"><error>Error: Parametros Incorrectos.</error></nascar_data>
+
