@@ -1,6 +1,6 @@
-## 2doPracialXML_g1_i3
+# 2doPracialXML_g1_i3.
 
-# ejeción
+## Ejeción y parametros.
 
 ./tpe.sh "year" "type"
 
