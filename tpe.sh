@@ -1,5 +1,7 @@
 #!/bin/bash
 
+API_KEY="zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy"
+
 es_numero() {
     local valor="$1"
     if [[ "$valor" =~ ^-?[0-9]+$ ]]; then
@@ -39,9 +41,9 @@ if  es_numero_valido "$2" && es_parametro_valido "$1"; then
     if  [ ! -d "./data/$1/$2" ]; then
         echo a
         mkdir -p "./data/$1/$2"
-        curl "https://api.sportradar.com/nascar-ot3/$1/$2/drivers/list.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./data/$1/$2/driver_list.xml"
+        curl "https://api.sportradar.com/nascar-ot3/$1/$2/drivers/list.xml?api_key=$API_KEY" -o "./data/$1/$2/driver_list.xml"
         sleep 2
-        curl "https://api.sportradar.com/nascar-ot3/$1/$2/standings/drivers.xml?api_key=zY4yZ4cOmu4puVLXSW9hb9xBJMOhcoLj9K17OrSy" -o "./data/$1/$2/driver_standings.xml"
+        curl "https://api.sportradar.com/nascar-ot3/$1/$2/standings/drivers.xml?api_key=$API_KEY" -o "./data/$1/$2/driver_standings.xml"
         sleep 2 
 
     fi
