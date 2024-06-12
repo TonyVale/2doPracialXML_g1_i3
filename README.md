@@ -2,7 +2,7 @@
 
 ## Ejeción y parametros.
 
-./tpe.sh "year" "type"
+./tpe.sh "type" "year"
 
 "year" = int 2014-2023
 "type" = sc|xf|cw|go|mc
